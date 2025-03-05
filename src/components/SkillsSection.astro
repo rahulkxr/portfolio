@@ -1,80 +1,86 @@
 ---
-import IconContainer from "@components/IconContainer.astro";
+// Frontend Icons
+import Html from "@assets/icons/html.astro";
 import Css from "@assets/icons/css.astro";
 import Javascript from "@assets/icons/javascript.astro";
+import Typescript from "@assets/icons/typescript.astro";
 import React from "@assets/icons/react.astro";
-import Html from "@assets/icons/html.astro";
+import Nextjs from "@assets/icons/nextjs.astro";
 import Tailwind from "@assets/icons/tailwind.astro";
 import AstroIcon from "@assets/icons/astro.astro";
-import Express from "@assets/icons/express.astro";
+
+// Backend Icons
 import Node from "@assets/icons/node.astro";
+import Express from "@assets/icons/express.astro";
 import Mysql from "@assets/icons/mysql.astro";
 import Postgresql from "@assets/icons/postgresql.astro";
+
+// Tools Icons
 import Bash from "@assets/icons/bash.astro";
 import Git from "@assets/icons/git.astro";
 import Github from "@assets/icons/github.astro";
 import Vscode from "@assets/icons/vscode.astro";
 import Figma from "@assets/icons/figma.astro";
+
+// Components
+import IconContainer from "@components/IconContainer.astro";
+
+// Define skill categories for better maintainability
+const frontendSkills = [
+  { name: "HTML", icon: Html },
+  { name: "CSS", icon: Css },
+  { name: "Javascript", icon: Javascript },
+  { name: "TypeScript", icon: Typescript },
+  { name: "Next.js", icon: Nextjs },
+  { name: "React", icon: React },
+  { name: "Tailwind", icon: Tailwind },
+  { name: "Astro", icon: AstroIcon },
+];
+
+const backendSkills = [
+  { name: "Node", icon: Node },
+  { name: "Express", icon: Express },
+  { name: "MySQL", icon: Mysql },
+  { name: "PostgreSQL", icon: Postgresql },
+];
+
+const toolsSkills = [
+  { name: "Bash", icon: Bash },
+  { name: "Git", icon: Git },
+  { name: "Github", icon: Github },
+  { name: "VSCode", icon: Vscode },
+  { name: "Figma", icon: Figma },
+];
 ---
 
 <section class="my-20">
-  <h2 class="text-2xl font-semibold mb-1">Habilidades</h2>
+  <h2 class="text-2xl font-semibold mb-1">Skills</h2>
   <hr class="mb-6 border-zinc-600">
 
-  <h3 class="text-xl font-medium mb-4 siz">Frontend</h3>
+  <h3 class="text-xl font-medium mb-4">Frontend</h3>
   <div class="flex flex-wrap gap-5">
-    <IconContainer name="HTML">
-      <Html size="size-9" />
-    </IconContainer>
-    <IconContainer name="CSS">
-      <Css size="size-9" />
-    </IconContainer>
-    <IconContainer name="Javascript">
-      <Javascript size="size-9" />
-    </IconContainer>
-    <IconContainer name="React">
-      <React size="size-9" />
-    </IconContainer>
-    <IconContainer name="Tailwind">
-      <Tailwind size="size-9" />
-    </IconContainer>
-    <IconContainer name="Astro">
-      <AstroIcon size="size-9" />
-    </IconContainer>
+    {frontendSkills.map(({ name, icon: Icon }) => (
+      <IconContainer name={name}>
+        <Icon size="size-9" />
+      </IconContainer>
+    ))}
   </div>
 
   <h3 class="text-xl font-medium mt-6 mb-4">Backend</h3>
   <div class="flex flex-wrap gap-5">
-    <IconContainer name="Node">
-      <Node size="size-9" />
-    </IconContainer>
-    <IconContainer name="Express">
-      <Express size="size-9" />
-    </IconContainer>
-    <IconContainer name="MySQL">
-      <Mysql size="size-9" />
-    </IconContainer>
-    <IconContainer name="PostgreSQL">
-      <Postgresql size="size-9" />
-    </IconContainer>
+    {backendSkills.map(({ name, icon: Icon }) => (
+      <IconContainer name={name}>
+        <Icon size="size-9" />
+      </IconContainer>
+    ))}
   </div>
 
-  <h3 class="text-xl font-medium mt-6 mb-4">Herramientas</h3>
+  <h3 class="text-xl font-medium mt-6 mb-4">Tools</h3>
   <div class="flex flex-wrap gap-5">
-    <IconContainer name="Bash">
-      <Bash size="size-9" />
-    </IconContainer>
-    <IconContainer name="Git">
-      <Git size="size-9" />
-    </IconContainer>
-    <IconContainer name="Github">
-      <Github size="size-9" />
-    </IconContainer>
-    <IconContainer name="VSCode">
-      <Vscode size="size-9" />
-    </IconContainer>
-    <IconContainer name="Figma">
-      <Figma size="size-9" />
-    </IconContainer>
+    {toolsSkills.map(({ name, icon: Icon }) => (
+      <IconContainer name={name}>
+        <Icon size="size-9" />
+      </IconContainer>
+    ))}
   </div>
 </section>
