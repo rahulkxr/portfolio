@@ -2,11 +2,13 @@
 import Github from "@assets/icons/github.astro"
 import Email from "@assets/icons/email.astro"
 import ContainerHover from "@components/ContainerHover.astro"
+import ThemeToggle from "@components/ThemeToggle.astro"
 ---
 
 <nav class="w-full flex justify-between items-center">
-  <span class="text-xl">@mrfullstackdev</span>
+  <span class="text-xl text-gray-900 dark:text-gray-100">@mrfullstackdev</span>
   <div class="flex gap-3 items-center">
+    <ThemeToggle />
     <ContainerHover link="mailto:mrfullstackdev@gmail.com">
       <Email />
     </ContainerHover>
