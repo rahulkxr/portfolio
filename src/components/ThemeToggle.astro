@@ -27,6 +27,21 @@
   </svg>
 </button>
 
+<style>
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .rotating {
+    animation: rotate 0.5s ease-in-out;
+  }
+</style>
+
 <script>
   // Set dark mode by default
   document.documentElement.classList.add('dark');
@@ -34,6 +49,18 @@
 
   const handleToggleClick = () => {
     const element = document.documentElement;
+    const svg = document.querySelector('#theme-toggle svg');
+    
+    if (svg) {
+      // Add rotating animation
+      svg.classList.add('rotating');
+      
+      // Remove animation class after it completes
+      setTimeout(() => {
+        svg.classList.remove('rotating');
+      }, 500);
+    }
+
     element.classList.toggle("dark");
 
     const isDark = element.classList.contains("dark");
