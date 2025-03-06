@@ -43,9 +43,9 @@
 </style>
 
 <script>
-  // Set dark mode by default
-  document.documentElement.classList.add('dark');
-  localStorage.setItem('theme', 'dark');
+  // Set light mode by default
+  document.documentElement.classList.remove('dark');
+  localStorage.setItem('theme', 'light');
 
   const handleToggleClick = () => {
     const element = document.documentElement;
