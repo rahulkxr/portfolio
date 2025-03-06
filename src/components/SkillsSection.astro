@@ -14,6 +14,7 @@ import Node from "@assets/icons/node.astro";
 import Express from "@assets/icons/express.astro";
 import Mysql from "@assets/icons/mysql.astro";
 import Postgresql from "@assets/icons/postgresql.astro";
+import Mongodb from "@assets/icons/mongodb.astro";
 
 // Tools Icons
 import Bash from "@assets/icons/bash.astro";
@@ -21,6 +22,15 @@ import Git from "@assets/icons/git.astro";
 import Github from "@assets/icons/github.astro";
 import Vscode from "@assets/icons/vscode.astro";
 import Figma from "@assets/icons/figma.astro";
+import CursorIcon from '@assets/icons/cursor.astro';
+
+// Testing Icons
+import Jmeter from "@assets/icons/jmeter.astro";
+import Postman from "@assets/icons/postman.astro";
+import Selenium from "@assets/icons/selenium.astro";
+import Burpsuite from "@assets/icons/burpsuite.astro";
+import Playwright from "@assets/icons/playwright.astro";
+import Browserstack from "@assets/icons/browserstack.astro";
 
 // Components
 import IconContainer from "@components/IconContainer.astro";
@@ -42,6 +52,7 @@ const backendSkills = [
   { name: "Express", icon: Express },
   { name: "MySQL", icon: Mysql },
   { name: "PostgreSQL", icon: Postgresql },
+  { name: "MongoDB", icon: Mongodb },
 ];
 
 const toolsSkills = [
@@ -50,6 +61,16 @@ const toolsSkills = [
   { name: "Github", icon: Github },
   { name: "VSCode", icon: Vscode },
   { name: "Figma", icon: Figma },
+  { name: "Cursor", icon: CursorIcon }
+];
+
+const testingSkills = [
+  { name: "JMeter", icon: Jmeter },
+  { name: "Postman", icon: Postman },
+  { name: "Selenium", icon: Selenium },
+  { name: "Burp Suite", icon: Burpsuite },
+  { name: "Playwright", icon: Playwright },
+  { name: "BrowserStack", icon: Browserstack },
 ];
 ---
 
@@ -69,6 +90,15 @@ const toolsSkills = [
   <h3 class="text-xl font-medium mt-6 mb-4">Backend</h3>
   <div class="flex flex-wrap gap-5">
     {backendSkills.map(({ name, icon: Icon }) => (
+      <IconContainer name={name}>
+        <Icon size="size-9" />
+      </IconContainer>
+    ))}
+  </div>
+
+  <h3 class="text-xl font-medium mt-6 mb-4">Testing</h3>
+  <div class="flex flex-wrap gap-5">
+    {testingSkills.map(({ name, icon: Icon }) => (
       <IconContainer name={name}>
         <Icon size="size-9" />
       </IconContainer>
