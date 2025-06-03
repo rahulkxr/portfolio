@@ -2,8 +2,10 @@
 import ProjectCard from '@components/ProjectCard.astro'
 import Typescript from '@assets/icons/typescript.astro';
 import React from '@assets/icons/react.astro';
-import Supabase from '@assets/icons/supabase.astro';
 import Tailwind from '@assets/icons/tailwind.astro';
+import NodeIcon from '@assets/icons/node.astro';
+import Express from '@assets/icons/express.astro';
+import Postgresql from '@assets/icons/postgresql.astro';
 ---
 
 <section class="my-20">
@@ -13,7 +15,7 @@ import Tailwind from '@assets/icons/tailwind.astro';
   <ProjectCard 
     projectTitle="Random Lead Generator" 
     projectDescription="A modern web application for generating dummy lead data for testing purposes. Built with React, TypeScript, and Tailwind CSS. Features include customizable number of leads, CSV export, and realistic data generation using Faker.js. Live demo available at random-lead-generator.vercel.app" 
-    projectLink="https://random-lead-generator.vercel.app/">
+    projectLink="https://github.com/MrFullStackDev/Random_lead_generator">
     <Typescript />
     <React />
     <Tailwind />
@@ -26,9 +28,7 @@ import Tailwind from '@assets/icons/tailwind.astro';
     <Typescript />
     <React />
     <Tailwind />
-    <Node />
-    <Express />
+    <NodeIcon />
     <Postgresql />
   </ProjectCard>
-
 </section>
