@@ -10,8 +10,25 @@ import Tailwind from '@assets/icons/tailwind.astro';
   <h2 class="text-2xl font-semibold mb-2 text-gray-900 dark:text-gray-100">Projects</h2>
   <hr class="mb-6 border-gray-300 dark:border-zinc-600">
 
-  <ProjectCard projectTitle="Movie Critic" projectDescription="Developed comprehensive Playwright test cases for the website using the Page Object Model (POM) architecture, leveraging TypeScript for better scalability, maintainability, and type safety. " projectLink="https://github.com/MrFullStackDev/MovieCriticTs">
+  <ProjectCard 
+    projectTitle="Random Lead Generator" 
+    projectDescription="A modern web application for generating dummy lead data for testing purposes. Built with React, TypeScript, and Tailwind CSS. Features include customizable number of leads, CSV export, and realistic data generation using Faker.js. Live demo available at random-lead-generator.vercel.app" 
+    projectLink="https://random-lead-generator.vercel.app/">
     <Typescript />
+    <React />
+    <Tailwind />
+  </ProjectCard>
+
+  <ProjectCard 
+    projectTitle="EventMind" 
+    projectDescription="An intelligent image and audio processing platform built with React, Node.js, and PostgreSQL. Features include OCR text extraction, AI-powered analysis using GPT-4V, audio transcription with Whisper API, and ClickUp integration for task management. Demonstrates full-stack development capabilities with modern tech stack." 
+    projectLink="https://github.com/MrFullStackDev/EventMind">
+    <Typescript />
+    <React />
+    <Tailwind />
+    <Node />
+    <Express />
+    <Postgresql />
   </ProjectCard>
 
 </section>
