@@ -1,34 +1,65 @@
 ---
 import ProjectCard from '@components/ProjectCard.astro'
+import Html from '@assets/icons/html.astro';
+import Css from '@assets/icons/css.astro';
+import Javascript from '@assets/icons/javascript.astro';
 import Typescript from '@assets/icons/typescript.astro';
 import React from '@assets/icons/react.astro';
 import Tailwind from '@assets/icons/tailwind.astro';
-import NodeIcon from '@assets/icons/node.astro';
+import Nextjs from '@assets/icons/nextjs.astro';
+import Playwright from '@assets/icons/playwright.astro';
 import Express from '@assets/icons/express.astro';
-import Postgresql from '@assets/icons/postgresql.astro';
+import Claude from '@assets/icons/claude.astro';
 ---
 
-<section class="my-20">
-  <h2 class="text-2xl font-semibold mb-2 text-gray-900 dark:text-gray-100">Projects</h2>
-  <hr class="mb-6 border-gray-300 dark:border-zinc-600">
+<section class="my-16 sm:my-20 font-sans">
+  <div class="flex items-baseline gap-3 mb-6">
+    <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Projects</h2>
+    <span class="flex-1 h-px bg-zinc-200 dark:bg-zinc-800"></span>
+  </div>
 
-  <ProjectCard 
-    projectTitle="Random Lead Generator" 
-    projectDescription="A modern web application for generating dummy lead data for testing purposes. Built with React, TypeScript, and Tailwind CSS. Features include customizable number of leads, CSV export, and realistic data generation using Faker.js. Live demo available at random-lead-generator.vercel.app" 
-    projectLink="https://github.com/MrFullStackDev/Random_lead_generator">
-    <Typescript />
-    <React />
-    <Tailwind />
+  <ProjectCard
+    projectTitle="InternetAutomation"
+    projectDescription="End-to-end regression suite for the-internet.herokuapp.com written in Playwright + TypeScript with a Page Object Model layout, plus a built-in Test Observability Dashboard backed by SQLite, Express, and Chart.js."
+    projectLink="https://github.com/MrFullStackDev/InternetAutomation"
+    image="/images/projects/internet-automation-live.png"
+    status="Open Source">
+    <Typescript size="w-5 h-5" />
+    <Playwright size="w-5 h-5" />
+    <Express size="w-5 h-5" />
   </ProjectCard>
 
-  <ProjectCard 
-    projectTitle="EventMind" 
-    projectDescription="An intelligent image and audio processing platform built with React, Node.js, and PostgreSQL. Features include OCR text extraction, AI-powered analysis using GPT-4V, audio transcription with Whisper API, and ClickUp integration for task management. Demonstrates full-stack development capabilities with modern tech stack." 
-    projectLink="https://github.com/MrFullStackDev/EventMind">
-    <Typescript />
-    <React />
-    <Tailwind />
-    <NodeIcon />
-    <Postgresql />
+  <ProjectCard
+    projectTitle="CleanSweep"
+    projectDescription="A fast, minimalist Chrome extension for clearing cookies, cache, and browsing data with a single click. Choose between wiping data for the current site only or every site at once."
+    projectLink="https://github.com/MrFullStackDev/CleanSweep"
+    image="/images/projects/cleansweep-live.png"
+    status="Live">
+    <Html size="w-5 h-5" />
+    <Css size="w-5 h-5" />
+    <Javascript size="w-5 h-5" />
+  </ProjectCard>
+
+  <ProjectCard
+    projectTitle="Random Lead Generator"
+    projectDescription="A modern web app for generating dummy lead data for testing purposes. Built with React, TypeScript, and Tailwind. Features customizable lead counts, CSV export, and realistic data generation via Faker.js."
+    projectLink="https://github.com/MrFullStackDev/Random_lead_generator"
+    image="/images/projects/random-lead-generator-live.png"
+    status="Live">
+    <Typescript size="w-5 h-5" />
+    <React size="w-5 h-5" />
+    <Tailwind size="w-5 h-5" />
+  </ProjectCard>
+
+  <ProjectCard
+    projectTitle="AI QA Assistant"
+    projectDescription="A local Next.js QA copilot that crawls sites, distills DOM, and generates self-healing Playwright tests via Claude / GPT / Gemini. Multi-framework codegen also targets Cypress, WebdriverIO, and Selenium."
+    projectLink="https://github.com/MrFullStackDev/AI-QA-Assistant"
+    image="/images/projects/ai-qa-assistant.png"
+    status="Open Source">
+    <Nextjs size="w-5 h-5" />
+    <Typescript size="w-5 h-5" />
+    <Playwright size="w-5 h-5" />
+    <Claude size="w-5 h-5" />
   </ProjectCard>
 </section>

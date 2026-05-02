@@ -1,7 +1,13 @@
 ---
-const { link } = Astro.props;
+const { link, label } = Astro.props;
 ---
 
-<a class="hover:bg-gray-50/50 dark:hover:bg-gray-800/80 hover:border-gray-50 dark:hover:border-gray-700 border border-transparent p-2 rounded-md transition-all duration-300" href={link} target="_blank">
-  <slot/>
+<a
+  href={link}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={label}
+  class="w-9 h-9 inline-flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-accent dark:hover:text-accent hover:border-accent dark:hover:border-accent transition-all duration-300"
+>
+  <slot />
 </a>
