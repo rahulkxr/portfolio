@@ -1,24 +1,27 @@
+---
+---
+
 <button
   id="theme-toggle"
-  class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 active:scale-95"
+  class="relative w-9 h-9 rounded-full border border-zinc-200 dark:border-zinc-800 hover:border-accent dark:hover:border-accent transition-all duration-300 flex items-center justify-center group"
   aria-label="Toggle theme"
 >
   <svg
-    class="w-5 h-5 text-gray-800 dark:text-gray-200 transition-all duration-300"
+    class="w-4 h-4 text-zinc-700 dark:text-zinc-200 transition-transform duration-500 group-active:scale-90"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      class="sun-icon hidden dark:block transition-all duration-300"
+      class="hidden dark:block"
       stroke-linecap="round"
       stroke-linejoin="round"
       stroke-width="2"
       d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
     />
     <path
-      class="moon-icon block dark:hidden transition-all duration-300"
+      class="block dark:hidden"
       stroke-linecap="round"
       stroke-linejoin="round"
       stroke-width="2"
@@ -27,48 +30,31 @@
   </svg>
 </button>
 
-<style>
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+<script>
+  const root = document.documentElement;
+  const button = document.getElementById('theme-toggle');
 
-  .rotating {
-    animation: rotate 0.5s ease-in-out;
+  const apply = (dark: boolean) => {
+    root.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  };
+
+  button?.addEventListener('click', () => {
+    const next = !root.classList.contains('dark');
+
+    // @ts-ignore — startViewTransition is progressive enhancement
+    if (document.startViewTransition) {
+      // @ts-ignore
+      document.startViewTransition(() => apply(next));
+    } else {
+      apply(next);
+    }
+  });
+</script>
+
+<style is:global>
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.4s;
   }
 </style>
-
-<script>
-  // Set light mode by default
-  document.documentElement.classList.remove('dark');
-  localStorage.setItem('theme', 'light');
-
-  const handleToggleClick = () => {
-    const element = document.documentElement;
-    const svg = document.querySelector('#theme-toggle svg');
-    
-    if (svg) {
-      // Add rotating animation
-      svg.classList.add('rotating');
-      
-      // Remove animation class after it completes
-      setTimeout(() => {
-        svg.classList.remove('rotating');
-      }, 500);
-    }
-
-    element.classList.toggle("dark");
-
-    const isDark = element.classList.contains("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  }
-
-  const themeToggle = document.getElementById("theme-toggle");
-  if (themeToggle) {
-    themeToggle.addEventListener("click", handleToggleClick);
-  }
-</script> 

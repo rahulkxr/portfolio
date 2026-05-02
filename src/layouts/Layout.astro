@@ -1,22 +1,47 @@
 ---
-const title = Astro.props.title;
+const { title, description = "Rahul Kumar — SDET with 3+ years building scalable test automation across Playwright, Selenium, and AI-assisted QA workflows. Lead SDET at SalesMonk.ai." } = Astro.props;
+const url = "https://mrfullstackdev.github.io/";
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="Rahul Kumar - QA Engineer and Web Developer Portfolio" />
-		<meta name="theme-color" content="#181818" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" as="style">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap">
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={url} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:creator" content="@mrfullstackdev" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+		/>
+
+		<script is:inline>
+			(() => {
+				const saved = localStorage.getItem('theme');
+				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				const dark = saved ? saved === 'dark' : prefersDark;
+				document.documentElement.classList.toggle('dark', dark);
+			})();
+		</script>
+
 		<title>{title}</title>
 	</head>
-	<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+	<body class="font-sans antialiased bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
+		<div class="page-bg" aria-hidden="true"></div>
 		<slot />
 	</body>
 </html>
@@ -27,7 +52,44 @@ const title = Astro.props.title;
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
-		font-family: 'Lora', sans-serif;
-		transition: background-color 0.3s ease, color 0.3s ease;
+	}
+
+	body {
+		transition: background-color 0.25s ease, color 0.25s ease;
+		font-feature-settings: 'ss01', 'cv11';
+	}
+
+	.page-bg {
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		pointer-events: none;
+		background-image:
+			radial-gradient(circle at 20% 0%, rgba(99, 102, 241, 0.05), transparent 40%),
+			radial-gradient(circle at 80% 100%, rgba(99, 102, 241, 0.04), transparent 40%);
+	}
+
+	:global(.dark) .page-bg {
+		background-image:
+			radial-gradient(circle at 20% 0%, rgba(99, 102, 241, 0.10), transparent 40%),
+			radial-gradient(circle at 80% 100%, rgba(99, 102, 241, 0.07), transparent 40%);
+	}
+
+	body::before {
+		content: '';
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		pointer-events: none;
+		background-image: radial-gradient(circle, rgba(120, 120, 120, 0.18) 1px, transparent 1px);
+		background-size: 24px 24px;
+		mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+		-webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+		opacity: 0.45;
+	}
+
+	:global(.dark) body::before {
+		background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+		opacity: 0.6;
 	}
 </style>

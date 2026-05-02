@@ -1,25 +1,58 @@
 ---
-const projectTitle = Astro.props.projectTitle;
-const projectDescription = Astro.props.projectDescription;
-const projectLink = Astro.props.projectLink;
-const image = Astro.props.image;
-import ArrowLink from "@assets/icons/arrow-link.astro";
+const { projectTitle, projectDescription, projectLink, image, status = "Open Source", monogram } = Astro.props;
+
+const initials = monogram ?? (projectTitle.match(/[A-Z][a-z]*/g) || projectTitle.split(/[\s_-]+/))
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((w: string) => w[0]?.toUpperCase())
+  .join('');
+
+const statusStyles: Record<string, string> = {
+  "Live":         "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20",
+  "Open Source":  "bg-accent/10 text-accent-700 dark:text-accent-400 border-accent/20",
+  "WIP":          "bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20",
+  "Private":      "bg-zinc-500/10 text-zinc-700 dark:text-zinc-400 border-zinc-500/20",
+};
+const statusClass = statusStyles[status] ?? statusStyles["Open Source"];
 ---
 
-<article style={{
-  backgroundImage: 'radial-gradient(circle, #6c6c6c1d 0%, transparent 100%)'
-}}
-class="border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 bg-opacity-40 p-8 rounded-lg flex flex-col-reverse md:flex-row justify-between mb-7 shadow-xl">
-  <div>
-      <a class="text-xl inline-flex items-center gap-2 hover:opacity-60 transition mb-2" target="_blank" href={projectLink}>
-        <h3 class="text-xl font-semibold inline-block text-gray-900 dark:text-gray-100">{projectTitle}</h3>
-        <span class="text-gray-600 dark:text-zinc-400">
-          <ArrowLink size="w-5 h-5" />
+<article class="group relative overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-sm hover:border-accent/60 dark:hover:border-accent/60 transition-all duration-300 mb-5 shadow-sm hover:shadow-md">
+  <a href={projectLink} target="_blank" rel="noopener noreferrer" class="block">
+    <div class="relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-zinc-100 via-zinc-50 to-white dark:from-zinc-900 dark:via-zinc-950 dark:to-black">
+      {image ? (
+        <img src={image} alt={projectTitle} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" />
+      ) : (
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="absolute inset-0" style="background-image: radial-gradient(circle at 30% 20%, rgba(99,102,241,0.18), transparent 55%), radial-gradient(circle at 80% 90%, rgba(99,102,241,0.10), transparent 50%);"></div>
+          <div class="absolute inset-0 opacity-[0.18]" style="background-image: linear-gradient(rgba(127,127,127,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(127,127,127,0.4) 1px, transparent 1px); background-size: 32px 32px;"></div>
+          <span class="relative text-5xl sm:text-6xl font-semibold tracking-tight text-zinc-300 dark:text-zinc-700 select-none">
+            {initials}
+          </span>
+        </div>
+      )}
+      <div class="absolute top-3 right-3">
+        <span class={`inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded-full border backdrop-blur-md ${statusClass}`}>
+          <span class="w-1 h-1 rounded-full bg-current"></span>
+          {status}
         </span>
-      </a>
-      <p class="text-gray-600 dark:text-zinc-400 text-sm text-pretty pr-2 mb-4">{projectDescription}</p>
-    <div class="flex items-center gap-3">
-      <slot/>
+      </div>
     </div>
-  </div>
+
+    <div class="p-5 sm:p-6">
+      <div class="flex items-center gap-2 mb-2">
+        <h3 class="text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 group-hover:text-accent dark:group-hover:text-accent transition-colors">
+          {projectTitle}
+        </h3>
+        <svg class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 group-hover:text-accent transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 17L17 7M9 7h8v8" />
+        </svg>
+      </div>
+      <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 mb-4">
+        {projectDescription}
+      </p>
+      <div class="flex items-center gap-3 flex-wrap [&>*]:opacity-80 group-hover:[&>*]:opacity-100 transition">
+        <slot />
+      </div>
+    </div>
+  </a>
 </article>
